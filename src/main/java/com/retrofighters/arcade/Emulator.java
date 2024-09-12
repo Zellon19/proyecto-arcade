@@ -84,7 +84,7 @@ public class Emulator {
     }
     
     public ArrayList<Emulator> emulatorList(){
-        return this._emulatorList;
+        return Emulator._emulatorList;
     }
     
     public Emulator(int pId, String pName){

@@ -4,19 +4,24 @@
  */
 package com.retrofighters.arcade;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author axela
  */
 public class Game {
-    public int _id;
-    public String _name;
-    public String _console;
-    public String _year;
-    public String _path;
-    public String _developer;
-    public Emulator _emulator;
+    private int _id;
+    private String _name;
+    private String _console;
+    private String _year;
+    private String _path;
+    private String _developer;
+    private Emulator _emulator;
 
+     private static ArrayList<Game> _gameList = new ArrayList();
+    // ^^^^ actually do a database look up for this shit
+    
     public int getId() {
         return _id;
     }
@@ -59,7 +64,66 @@ public class Game {
     public void setEmulator(Emulator _emulator) {
         this._emulator = _emulator;
     }
+  
 
+    // look up a game having the object
+    public Game searchGame(Game pGame){
+        for(Game game :this.gameList())
+            if(game.getId() == pGame.getId())
+                return game;
+        
+        return null;
+    }   
+    // look up a game having just its id
+    public Game searchGame(int pId){
+        for(Game game :this.gameList())
+            if(game.getId() == pId)
+                return game;
+        
+        return null;       
+    } 
+    // look up a game locally (only used in add/delete/update methods)
+    private Game searchGame(){
+        for(Game game :this.gameList())
+            if(game.getId() == this.getId())
+                return game;
+        
+        return null;
+    }
+    
+    // adds a game to the list if it exists
+    public boolean addGame(Game pGame){
+        if(pGame.searchGame() == null)
+            return false;
+        
+        return this.gameList().add(pGame);
+    }
+    
+    // deletes a game from the list if it exists
+    public boolean removeGame(Game pGame){
+        if(pGame.searchGame() == null)
+            return false;
+        
+        return this.gameList().remove(pGame);
+    }
+    
+    // modifies a game from the list if it exists
+    public boolean modifyEmulator(Game pGame){
+        if(pGame.searchGame() == null)
+            return false;
+    
+        // IF it deletes the game (with old data) adds it again (with new data)
+        if(this.gameList().remove(pGame.searchGame()))
+            return this.gameList().add(pGame);
+        
+        return false;
+    }
+    
+    public ArrayList<Game> gameList(){
+        return Game._gameList;
+    }
+    
+    
     public Game(int pId, String pName, String pConsole, String pYear, String pPath, String pDeveloper, Emulator pEmulator) {
         this._id = pId;
         this._name = pName;
