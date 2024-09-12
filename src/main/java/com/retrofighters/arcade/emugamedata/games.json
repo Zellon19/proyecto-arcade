@@ -41,11 +41,11 @@
 
     {
         "id": "5",
-        "name": "Neo Bomberman",
-        "console": "Neo Geo",
-        "year": "1997",
+        "name": "Crash Bandicoot",
+        "console": "PlayStation",
+        "year": "1996",
         "path": "C:/yada/yada/yada",
-        "developer": "Hudson Soft / Produce!",
+        "developer": "Naughty dog / Vivendi Games",
         "emulator_id:": 4
     }
 ]
