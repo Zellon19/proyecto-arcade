@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author axela
+ * @author Retro Fighters
  */
 public class Game {
     private int _id;

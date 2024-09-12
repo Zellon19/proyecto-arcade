@@ -6,7 +6,7 @@ package com.retrofighters.arcade;
 
 /**
  *
- * @author axela
+ * @author Retro Fighters
  */
 public class Arcade extends javax.swing.JFrame {
 

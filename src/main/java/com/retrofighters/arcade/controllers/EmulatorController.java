@@ -4,36 +4,32 @@
  */
 package com.retrofighters.arcade.controllers;
 
+import com.retrofighters.arcade.Emulator;
+import com.retrofighters.arcade.Game;
+import com.retrofighters.arcade.handlers.EmulatorHandler;
+
 /**
  *
- * @author axela
+ * @author Retro Fighters
  */
 // handles the emulator instance that is executed
 public class EmulatorController {
-    private String _game;
     private int _emulatorId;
-    
-    private final String _emulatorPath = "C:\\RetroArch-Win64\\retroarch.exe";
-
-    public String getGame() {
-        return _game;
-    }
-    
-    public void setGame(String _game) {
-        this._game = _game;
-    }
 
     public int getEmulatorId() {
         return _emulatorId;
     }
-
     public void setEmulatorId(int _emulatorId) {
         this._emulatorId = _emulatorId;
     }
 
-    public EmulatorController(int pEmulatorId, String pGame) {
+    // returns true if the emulator instance starts correctly
+    public boolean initiateEmulatorInstance(Emulator pEmulator, Game pGame){
+        return new EmulatorHandler().initializeEmulator(pEmulator, pGame);
+    }
+    
+    public EmulatorController(int pEmulatorId) {
         this._emulatorId = pEmulatorId;
-        this._game = pGame;
     }
         
     
