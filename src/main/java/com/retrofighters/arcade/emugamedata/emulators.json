@@ -1,0 +1,31 @@
+[
+    {
+        "emulator_id": 1,
+        "emulator_name": "Atari - 2600 (Stella)"
+    },
+
+
+
+
+    {
+        "emulator_id": 2,
+        "emulator_name": "Nintendo - NES / Famicom (FCEUmm"
+    },
+
+
+
+
+   {
+        "emulator_id": 3,
+        "emulator_name": "Sega - Mega Drive - Genesis (BlastEm"
+    },
+
+
+
+
+    {
+        "emulator_id": 4,
+        "emulator_name": "SNK - Neo Geo AES/MVS (Geolith)"
+    }
+
+]

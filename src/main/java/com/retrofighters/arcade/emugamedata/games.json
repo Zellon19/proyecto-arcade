@@ -1,0 +1,51 @@
+[
+    {
+        "id": "1",
+        "name": "Pacman 1981",
+        "console": "Atari",
+        "year": "1981",
+        "path": "C:/yada/yada/yada",
+        "developer": "Toru Iwatani / Namco",
+        "emulator_id:": 1
+    },
+
+    {
+        "id": "2",
+        "name": "VS Super Mario Bros (VS)",
+        "console": "Nintendo Nes",
+        "year": "1986",
+        "path": "C:/yada/yada/yada",
+        "developer": "Nintendo",
+        "emulator_id:": 2
+    },
+
+    {
+        "id": "3",
+        "name": "Tetris",
+        "console": "Nintendo Nes",
+        "year": "1984",
+        "path": "C:/yada/yada/yada",
+        "developer": "Alekséi Pázhitnov",
+        "emulator_id:": 2
+    },
+
+    {
+        "id": "4",
+        "name": "Sonic The Hedgehog",
+        "console": "Sega Genesis",
+        "year": "1991",
+        "path": "C:/yada/yada/yada",
+        "developer": "Naoto Ōshima / Yuji Naka / Hirokazu Yasuhara",
+        "emulator_id:": 3
+    },
+
+    {
+        "id": "5",
+        "name": "Neo Bomberman",
+        "console": "Neo Geo",
+        "year": "1997",
+        "path": "C:/yada/yada/yada",
+        "developer": "Hudson Soft / Produce!",
+        "emulator_id:": 4
+    }
+]
