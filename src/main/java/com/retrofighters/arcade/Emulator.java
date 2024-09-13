@@ -91,4 +91,8 @@ public class Emulator {
         this._id = pId;
         this._name = pName;
     }
+    
+    public Emulator(){
+        
+    }
 }

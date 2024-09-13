@@ -19,7 +19,7 @@ public class Game {
     private String _developer;
     private Emulator _emulator;
 
-     private static ArrayList<Game> _gameList = new ArrayList();
+    private static ArrayList<Game> _gameList = new ArrayList();
     // ^^^^ actually do a database look up for this shit
     
     public int getId() {
@@ -65,7 +65,6 @@ public class Game {
         this._emulator = _emulator;
     }
   
-
     // look up a game having the object
     public Game searchGame(Game pGame){
         for(Game game :this.gameList())
@@ -123,7 +122,6 @@ public class Game {
         return Game._gameList;
     }
     
-    
     public Game(int pId, String pName, String pConsole, String pYear, String pPath, String pDeveloper, Emulator pEmulator) {
         this._id = pId;
         this._name = pName;
@@ -132,6 +130,10 @@ public class Game {
         this._path = pPath;
         this._developer = pDeveloper;
         this._emulator = pEmulator;
+    }
+    
+    public Game(){
+        
     }
     
 }
