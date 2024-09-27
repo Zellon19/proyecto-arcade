@@ -27,7 +27,7 @@ public class EmulatorHandler {
     public boolean initializeEmulator(Emulator pEmulator, Game pGame) throws IOException, InterruptedException{
         ProcessBuilder processBuilder = new ProcessBuilder(
             _retroArchPath,
-            "--libretro", _corePath,
+            "--libretro=", _corePath,
             _testRomPath
         );
         processBuilder.redirectErrorStream(true);
