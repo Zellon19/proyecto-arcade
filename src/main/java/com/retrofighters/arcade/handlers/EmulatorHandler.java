@@ -8,6 +8,8 @@ import java.io.File;
 import java.io.IOException;
 import com.retrofighters.arcade.Emulator;
 import com.retrofighters.arcade.Game;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 
 /**
  *
@@ -15,17 +17,31 @@ import com.retrofighters.arcade.Game;
  */
 //
 //handles the execution of the emulator and correct instancing of the selected game
+
 public class EmulatorHandler {
-    private final String _emulatorPath = "C:\\RetroArch-Win64\\retroarch.exe";
+    private final String _retroArchPath = "C:\\RetroArch-Win64\\retroarch.exe ";
+    private final String _corePath = "C:\\RetroArch-Win64\\cores\\stella_libretro.dll "; // atari stella emulator
+    private final String _testRomPath = "C:\\Users\\axela\\Documents\\NetBeansProjects\\proyectoArcade\\src\\main\\java\\com\\retrofighters\\arcade\\assets\\ROMs\\spaceInvadersAtari.a26 "; // space invaders for atari
     
     // initializes the emulator instance
     public boolean initializeEmulator(Emulator pEmulator, Game pGame) throws IOException, InterruptedException{
-        ProcessBuilder processBuilder = new ProcessBuilder(_emulatorPath);
+        ProcessBuilder processBuilder = new ProcessBuilder(
+            _retroArchPath,
+            "--libretro", _corePath,
+            _testRomPath
+        );
+        processBuilder.redirectErrorStream(true);
         try {
             Process process = processBuilder.start();
+            try (BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()))) {
+                String line;
+                while ((line = reader.readLine()) != null) {
+                 System.out.println(line); // Print output to console
+                }
+            }
             int exitCode = process.waitFor();
             System.out.println("Process finished with code: " + exitCode);
-        } catch (Exception ex) {
+        } catch (IOException | InterruptedException ex) {
             throw ex;
         }
         return true;
