@@ -81,7 +81,7 @@ public class Arcade extends javax.swing.JFrame {
         EmulatorController emuController = new EmulatorController(1);
         try {
             emuController.initiateEmulatorInstance(new Emulator(), new Game());
-        } catch (IOException | InterruptedException ex) {
+        } catch (InterruptedException | IOException ex) {
             Logger.getLogger(Arcade.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnIniciarJuegoActionPerformed

@@ -14,7 +14,7 @@ public class Emulator {
     private int _id;
     private String _name;
     
-    private static ArrayList<Emulator> _emulatorList = new ArrayList();
+    private static ArrayList<Emulator> _emulatorList = new ArrayList<>();
     // ^^^^ actually do a database look up for this shit
     
     public int getId() {
@@ -58,9 +58,9 @@ public class Emulator {
     // adds an emulator to the list if it exists
     public boolean addEmulator(Emulator pEmulator){
         if(pEmulator.searchEmulator() == null)
-            return false;
+            return this.emulatorList().add(pEmulator);
         
-        return this.emulatorList().add(pEmulator);
+        return false;
     }
     
     // deletes an emulator from the list if it exists
