@@ -13,7 +13,8 @@ import java.util.ArrayList;
 public class Emulator {
     private int _id;
     private String _name;
-    
+    private String _path;
+
     private static ArrayList<Emulator> _emulatorList = new ArrayList<>();
     // ^^^^ actually do a database look up for this shit
     
@@ -29,10 +30,30 @@ public class Emulator {
     public void setName(String _name) {
         this._name = _name;
     }
+    public String getPath() {
+        return _path;
+    }
+    public void setPath(String _path) {
+        this._path = _path;
+    }
+    
+    public void initializeData(){
+        String atariEmuPath = "C:\\RetroArch-Win64\\cores\\stella_libretro.dll";
+        String nesEmuPath = "C:\\RetroArch-Win64\\cores\\fceumm_libretro.dll";
+
+        String atariEmuName = "Atari - 2600 (Stella)";
+        String nesEmuName = "Nintendo - NES / Famicom *(FCEUmm)";
+                
+        Emulator atariEmulator = new Emulator(1, atariEmuName, atariEmuPath);
+        Emulator nesEmulator = new Emulator(2, nesEmuName, nesEmuPath);
+        
+        this.addEmulator(atariEmulator);
+        this.addEmulator(nesEmulator);
+    }
     
     // look up an emulator having the object
     public Emulator searchEmulator(Emulator pEmulator){
-        for(Emulator emu :this.emulatorList())
+        for(Emulator emu : this.emulatorList())
             if(emu.getId() == pEmulator.getId())
                 return emu;
         
@@ -40,7 +61,7 @@ public class Emulator {
     }   
     // look up an emulator having just its id
     public Emulator searchEmulator(int pId){
-        for(Emulator emu :this.emulatorList())
+        for(Emulator emu : this.emulatorList())
             if(emu.getId() == pId)
                 return emu;
         
@@ -48,7 +69,7 @@ public class Emulator {
     } 
     // look up an emulator locally (only used in add/delete/update methods)
     private Emulator searchEmulator(){
-        for(Emulator emu :this.emulatorList())
+        for(Emulator emu : this.emulatorList())
             if(emu.getId() == this.getId())
                 return emu;
         
@@ -87,9 +108,10 @@ public class Emulator {
         return Emulator._emulatorList;
     }
     
-    public Emulator(int pId, String pName){
+    public Emulator(int pId, String pName, String pPath){
         this._id = pId;
         this._name = pName;
+        this._path = pPath;
     }
     
     public Emulator(){

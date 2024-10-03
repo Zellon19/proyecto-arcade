@@ -4,12 +4,9 @@
  */
 package com.retrofighters.arcade.handlers;
 
-import java.io.File;
 import java.io.IOException;
 import com.retrofighters.arcade.Emulator;
 import com.retrofighters.arcade.Game;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 
 /**
  *
@@ -28,8 +25,9 @@ public class EmulatorHandler {
     public boolean initializeEmulator(Emulator pEmulator, Game pGame) throws IOException, InterruptedException{
         String command[] = {
             _retroArchPath,
-            "-L", _corePath,
-            _testRomPath}; 
+            "-L", pEmulator.getPath(),
+            pGame.getPath()
+        }; 
         Process process;
         try {
             //Process process = processBuilder.start();

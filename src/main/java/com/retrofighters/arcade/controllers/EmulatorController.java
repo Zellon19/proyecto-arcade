@@ -15,22 +15,13 @@ import java.io.IOException;
  */
 // handles the emulator instance that is executed
 public class EmulatorController {
-    private int _emulatorId;
-
-    public int getEmulatorId() {
-        return _emulatorId;
-    }
-    public void setEmulatorId(int _emulatorId) {
-        this._emulatorId = _emulatorId;
-    }
 
     // returns true if the emulator instance starts correctly
     public boolean initiateEmulatorInstance(Emulator pEmulator, Game pGame) throws IOException, InterruptedException{
         return new EmulatorHandler().initializeEmulator(pEmulator, pGame);
     }
     
-    public EmulatorController(int pEmulatorId) {
-        this._emulatorId = pEmulatorId;
+    public EmulatorController() {
     }
         
     

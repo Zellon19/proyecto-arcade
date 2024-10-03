@@ -1,8 +1,10 @@
+
+package com.retrofighters.arcade;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.retrofighters.arcade;
 
 import java.util.ArrayList;
 
@@ -19,9 +21,10 @@ public class Game {
     private String _developer;
     private Emulator _emulator;
 
-    private static ArrayList<Game> _gameList = new ArrayList();
+   
+    private static ArrayList<Game> _gameList = new ArrayList<>();
     // ^^^^ actually do a database look up for this shit
-    
+        
     public int getId() {
         return _id;
     }
@@ -65,9 +68,23 @@ public class Game {
         this._emulator = _emulator;
     }
   
+    public void initializeData(){
+        String atariSpaceInvadersPath = "C:\\Users\\axela\\Desktop\\Repositorios\\Proyecto Arcade\\proyecto-arcade\\src\\main\\resources\\com\\retrofighters\\arcade\\assets\\ROMs\\atari\\spaceInvadersAtari.a26";
+        Emulator atariEmu = new Emulator().searchEmulator(1);
+        
+        String nesTetrisPath = "C:\\Users\\axela\\Desktop\\Repositorios\\Proyecto Arcade\\proyecto-arcade\\src\\main\\resources\\com\\retrofighters\\arcade\\assets\\ROMs\\nintendones\\tetrisNES.nes";
+        Emulator nesEmu = new Emulator().searchEmulator(2);
+        
+        Game spaceInvaders = new Game(1, "Space Invaders", "Atari 2600", "1978", atariSpaceInvadersPath, "Toshihiro Nishikado", atariEmu);
+        Game tetris = new Game(2, "Tetris", "NES", "1984", nesTetrisPath, "Alekséi Pázhitnov", nesEmu);
+        
+        this.addGame(spaceInvaders);
+        this.addGame(tetris);
+    }
+
     // look up a game having the object
     public Game searchGame(Game pGame){
-        for(Game game :this.gameList())
+        for(Game game : this.gameList())
             if(game.getId() == pGame.getId())
                 return game;
         
@@ -75,7 +92,7 @@ public class Game {
     }   
     // look up a game having just its id
     public Game searchGame(int pId){
-        for(Game game :this.gameList())
+        for(Game game : this.gameList())
             if(game.getId() == pId)
                 return game;
         
@@ -83,7 +100,7 @@ public class Game {
     } 
     // look up a game locally (only used in add/delete/update methods)
     private Game searchGame(){
-        for(Game game :this.gameList())
+        for(Game game : this.gameList())
             if(game.getId() == this.getId())
                 return game;
         
@@ -93,9 +110,9 @@ public class Game {
     // adds a game to the list if it exists
     public boolean addGame(Game pGame){
         if(pGame.searchGame() == null)
-            return false;
+            return this.gameList().add(pGame);
         
-        return this.gameList().add(pGame);
+        return false;
     }
     
     // deletes a game from the list if it exists
