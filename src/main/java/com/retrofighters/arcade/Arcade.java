@@ -42,7 +42,7 @@ public class Arcade extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         btnIniciarJuego = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnAdminPanel = new javax.swing.JButton();
         lblMainImage = new javax.swing.JLabel();
         lblImageRight = new javax.swing.JLabel();
         lblImageLeft = new javax.swing.JLabel();
@@ -66,8 +66,13 @@ public class Arcade extends javax.swing.JFrame {
         });
         jPanel1.add(btnIniciarJuego, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 600, 175, 71));
 
-        jButton2.setText("Acceso Admin");
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 90, -1, -1));
+        btnAdminPanel.setText("Acceso Admin");
+        btnAdminPanel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdminPanelActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnAdminPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 90, -1, -1));
 
         lblMainImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/retrofighters/arcade/assets/gameLogos/atari/atariSpaceInvadersLogo.jpg"))); // NOI18N
         jPanel1.add(lblMainImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 260, -1, -1));
@@ -131,6 +136,12 @@ public class Arcade extends javax.swing.JFrame {
         selectedGame++;
     }//GEN-LAST:event_btnNextGame1ActionPerformed
 
+    private void btnAdminPanelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminPanelActionPerformed
+        AdminPanel admPanel = new AdminPanel();
+        admPanel.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnAdminPanelActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -167,10 +178,10 @@ public class Arcade extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAdminPanel;
     private javax.swing.JButton btnIniciarJuego;
     private javax.swing.JButton btnNextGame1;
     private javax.swing.JButton btnPreviousGame;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblImageLeft;

@@ -19,14 +19,14 @@ public class EmulatorHandler {
     private final String _retroArchPath = "C:\\RetroArch-Win64\\retroarch.exe ";
     private final String _corePath = "C:\\RetroArch-Win64\\cores\\stella_libretro.dll "; // atari stella emulator
     //private final String _testRomPath = "\"C:\\Users\\57260758\\Documents\\GitHub\\proyecto-arcade\\src\\main\\java\\com\\retrofighters\\arcade\\assets\\ROMs\\atari\\spaceInvadersAtari.a26\" "; // space invaders for atari
-    private final String _testRomPath = "C:\\Users\\axela\\Desktop\\Repositorios\\Proyecto Arcade\\proyecto-arcade\\src\\main\\resources\\com\\retrofighters\\arcade\\assets\\ROMs\\atari\\spaceInvadersAtari.a26"; // space invaders for atari
-    
+    //private final String _testRomPath = "C:\\Users\\axela\\Desktop\\Repositorios\\Proyecto Arcade\\proyecto-arcade\\src\\main\\resources\\com\\retrofighters\\arcade\\assets\\ROMs\\atari\\spaceInvadersAtari.a26"; // space invaders for atari
+    private final String _testRomPath = "";
     // initializes the emulator instance
     public boolean initializeEmulator(Emulator pEmulator, Game pGame) throws IOException, InterruptedException{
         String command[] = {
             _retroArchPath,
             "-L", pEmulator.getPath(),
-            pGame.getPath()
+       //     pGame.getPath()
         }; 
         Process process;
         try {
