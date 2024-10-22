@@ -141,7 +141,7 @@
             <Component class="javax.swing.JLabel" name="NESimg">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/com/retrofighters/arcade/assets/gifs/Nintendo Gif 300 x 200.gif"/>
+                  <Image iconType="3" name="/com/retrofighters/arcade/assets/gifs/NES 300 x 200.gif"/>
                 </Property>
               </Properties>
             </Component>

@@ -99,7 +99,7 @@ public class MainPage extends javax.swing.JFrame {
         });
         jPanel1.add(btnNextGame1, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 620, -1, -1));
 
-        NESimg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/retrofighters/arcade/assets/gifs/Nintendo Gif 300 x 200.gif"))); // NOI18N
+        NESimg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/retrofighters/arcade/assets/gifs/NES 300 x 200.gif"))); // NOI18N
 
         lblNES.setText("Nintendo Entertainment System (1983)");
 
