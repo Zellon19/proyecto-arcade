@@ -9,7 +9,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.ImageIcon;
+import java.awt.Font;
+import java.awt.FontFormatException;
+import java.io.File;
 /**
  *
  * @author Retro Fighters
@@ -21,7 +23,7 @@ public class MainPage extends javax.swing.JFrame {
     /**
      * Creates new form Arcade
      */
-    public MainPage() {
+    public MainPage() throws FontFormatException, IOException {
         initComponents();
         
         Game game = new Game();
@@ -30,6 +32,8 @@ public class MainPage extends javax.swing.JFrame {
         emu.initializeData();
         game.initializeData();
         gameList = game.gameList();
+
+        
     }
 
     /**
@@ -46,6 +50,9 @@ public class MainPage extends javax.swing.JFrame {
         btnAdminPanel = new javax.swing.JButton();
         btnPreviousGame = new javax.swing.JButton();
         btnNextGame1 = new javax.swing.JButton();
+        PanelNES = new javax.swing.JPanel();
+        NESimg = new javax.swing.JLabel();
+        lblNES = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -92,6 +99,33 @@ public class MainPage extends javax.swing.JFrame {
         });
         jPanel1.add(btnNextGame1, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 620, -1, -1));
 
+        NESimg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/retrofighters/arcade/assets/gifs/Nintendo Gif 300 x 200.gif"))); // NOI18N
+
+        lblNES.setText("Nintendo Entertainment System (1983)");
+
+        javax.swing.GroupLayout PanelNESLayout = new javax.swing.GroupLayout(PanelNES);
+        PanelNES.setLayout(PanelNESLayout);
+        PanelNESLayout.setHorizontalGroup(
+            PanelNESLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelNESLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(NESimg)
+                .addGap(18, 18, 18)
+                .addComponent(lblNES)
+                .addContainerGap(152, Short.MAX_VALUE))
+        );
+        PanelNESLayout.setVerticalGroup(
+            PanelNESLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelNESLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(PanelNESLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblNES)
+                    .addComponent(NESimg))
+                .addContainerGap(164, Short.MAX_VALUE))
+        );
+
+        jPanel1.add(PanelNES, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 200, 680, 370));
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/retrofighters/arcade/assets/RetroFighters/RetroFighters Desktop.png"))); // NOI18N
         jLabel1.setText("jLabel1");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 1100, -1));
@@ -122,6 +156,8 @@ public class MainPage extends javax.swing.JFrame {
         selectedGame++;
     }//GEN-LAST:event_btnNextGame1ActionPerformed
 
+
+        
     private void btnAdminPanelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminPanelActionPerformed
         AdminPanel admPanel = new AdminPanel();
         admPanel.setVisible(true);
@@ -159,23 +195,27 @@ public class MainPage extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainPage().setVisible(true);
+                try {
+                    new MainPage().setVisible(true);
+                } catch (FontFormatException ex) {
+                    Logger.getLogger(MainPage.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(MainPage.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
 
-    //image resizing
-    ImageIcon image = proyecto-arcade/src/main/resources/com/retrofighters/arcade/assets/gifs/Sega Logo.gif
-    int width = 100;
-    int height = 100;
-    image.setImage(image.getImage().getScaledInstance(width, height, Image.SCALE_DEFAULT));
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel NESimg;
+    private javax.swing.JPanel PanelNES;
     private javax.swing.JButton btnAdminPanel;
     private javax.swing.JButton btnIniciarJuego;
     private javax.swing.JButton btnNextGame1;
     private javax.swing.JButton btnPreviousGame;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblNES;
     // End of variables declaration//GEN-END:variables
 }
