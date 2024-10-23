@@ -101,7 +101,7 @@ public class MainPage extends javax.swing.JFrame {
 
         NESimg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/retrofighters/arcade/assets/gifs/NES 300 x 200.gif"))); // NOI18N
 
-        lblNES.setText("Nintendo Entertainment System (1983)");
+        lblNES.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/retrofighters/arcade/assets/titles/NES Title.png"))); // NOI18N
 
         javax.swing.GroupLayout PanelNESLayout = new javax.swing.GroupLayout(PanelNES);
         PanelNES.setLayout(PanelNESLayout);
@@ -110,17 +110,19 @@ public class MainPage extends javax.swing.JFrame {
             .addGroup(PanelNESLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(NESimg)
-                .addGap(18, 18, 18)
+                .addGap(34, 34, 34)
                 .addComponent(lblNES)
-                .addContainerGap(152, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
         PanelNESLayout.setVerticalGroup(
             PanelNESLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelNESLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(PanelNESLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblNES)
-                    .addComponent(NESimg))
+                    .addComponent(NESimg)
+                    .addGroup(PanelNESLayout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(lblNES)))
                 .addContainerGap(164, Short.MAX_VALUE))
         );
 
