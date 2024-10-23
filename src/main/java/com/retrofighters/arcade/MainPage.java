@@ -53,6 +53,7 @@ public class MainPage extends javax.swing.JFrame {
         PanelNES = new javax.swing.JPanel();
         NESimg = new javax.swing.JLabel();
         lblNES = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -99,9 +100,13 @@ public class MainPage extends javax.swing.JFrame {
         });
         jPanel1.add(btnNextGame1, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 620, -1, -1));
 
+        PanelNES.setBackground(new java.awt.Color(51, 51, 51));
+
         NESimg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/retrofighters/arcade/assets/gifs/NES 300 x 200.gif"))); // NOI18N
 
         lblNES.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/retrofighters/arcade/assets/titles/NES Title.png"))); // NOI18N
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/retrofighters/arcade/assets/sysinfo/NES Info.png"))); // NOI18N
 
         javax.swing.GroupLayout PanelNESLayout = new javax.swing.GroupLayout(PanelNES);
         PanelNES.setLayout(PanelNESLayout);
@@ -111,8 +116,10 @@ public class MainPage extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(NESimg)
                 .addGap(34, 34, 34)
-                .addComponent(lblNES)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addGroup(PanelNESLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblNES)
+                    .addComponent(jLabel2))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         PanelNESLayout.setVerticalGroup(
             PanelNESLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -122,8 +129,10 @@ public class MainPage extends javax.swing.JFrame {
                     .addComponent(NESimg)
                     .addGroup(PanelNESLayout.createSequentialGroup()
                         .addGap(19, 19, 19)
-                        .addComponent(lblNES)))
-                .addContainerGap(164, Short.MAX_VALUE))
+                        .addComponent(lblNES)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel2)))
+                .addContainerGap(77, Short.MAX_VALUE))
         );
 
         jPanel1.add(PanelNES, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 200, 680, 370));
@@ -217,6 +226,7 @@ public class MainPage extends javax.swing.JFrame {
     private javax.swing.JButton btnNextGame1;
     private javax.swing.JButton btnPreviousGame;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblNES;
     // End of variables declaration//GEN-END:variables
