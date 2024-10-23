@@ -9,18 +9,21 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.awt.Font;
+import java.awt.FontFormatException;
+import java.io.File;
 /**
  *
  * @author Retro Fighters
  */
-public class Arcade extends javax.swing.JFrame {
+public class MainPage extends javax.swing.JFrame {
 
     private static int selectedGame = 0;
     private static ArrayList<Game> gameList = new ArrayList<>();
     /**
      * Creates new form Arcade
      */
-    public Arcade() {
+    public MainPage() throws FontFormatException, IOException {
         initComponents();
         
         Game game = new Game();
@@ -29,6 +32,8 @@ public class Arcade extends javax.swing.JFrame {
         emu.initializeData();
         game.initializeData();
         gameList = game.gameList();
+
+        
     }
 
     /**
@@ -43,11 +48,11 @@ public class Arcade extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         btnIniciarJuego = new javax.swing.JButton();
         btnAdminPanel = new javax.swing.JButton();
-        lblMainImage = new javax.swing.JLabel();
-        lblImageRight = new javax.swing.JLabel();
-        lblImageLeft = new javax.swing.JLabel();
         btnPreviousGame = new javax.swing.JButton();
         btnNextGame1 = new javax.swing.JButton();
+        PanelNES = new javax.swing.JPanel();
+        NESimg = new javax.swing.JLabel();
+        lblNES = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -58,7 +63,7 @@ public class Arcade extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnIniciarJuego.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        btnIniciarJuego.setText("Iniciar Juego");
+        btnIniciarJuego.setText("Iniciar Sistema");
         btnIniciarJuego.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnIniciarJuegoActionPerformed(evt);
@@ -73,18 +78,6 @@ public class Arcade extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnAdminPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 90, -1, -1));
-
-        lblMainImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/retrofighters/arcade/assets/gameLogos/atari/atariSpaceInvadersLogo.jpg"))); // NOI18N
-        jPanel1.add(lblMainImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 260, -1, -1));
-
-        lblImageRight.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/retrofighters/arcade/assets/gameLogos/nintendoNes/nesTetrisLogo.jpg"))); // NOI18N
-        lblImageRight.setMinimumSize(new java.awt.Dimension(145, 201));
-        jPanel1.add(lblImageRight, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 260, -1, -1));
-
-        lblImageLeft.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/retrofighters/arcade/assets/gameLogos/nintendoNes/nesTetrisLogo.jpg"))); // NOI18N
-        jPanel1.add(lblImageLeft, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 260, -1, -1));
-        lblImageLeft.getAccessibleContext().setAccessibleName("lblImageLeft");
-        lblImageLeft.getAccessibleContext().setAccessibleDescription("");
 
         btnPreviousGame.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         btnPreviousGame.setText("<-");
@@ -106,9 +99,36 @@ public class Arcade extends javax.swing.JFrame {
         });
         jPanel1.add(btnNextGame1, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 620, -1, -1));
 
+        NESimg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/retrofighters/arcade/assets/gifs/NES 300 x 200.gif"))); // NOI18N
+
+        lblNES.setText("Nintendo Entertainment System (1983)");
+
+        javax.swing.GroupLayout PanelNESLayout = new javax.swing.GroupLayout(PanelNES);
+        PanelNES.setLayout(PanelNESLayout);
+        PanelNESLayout.setHorizontalGroup(
+            PanelNESLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelNESLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(NESimg)
+                .addGap(18, 18, 18)
+                .addComponent(lblNES)
+                .addContainerGap(152, Short.MAX_VALUE))
+        );
+        PanelNESLayout.setVerticalGroup(
+            PanelNESLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelNESLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(PanelNESLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblNES)
+                    .addComponent(NESimg))
+                .addContainerGap(164, Short.MAX_VALUE))
+        );
+
+        jPanel1.add(PanelNES, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 200, 680, 370));
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/retrofighters/arcade/assets/RetroFighters/RetroFighters Desktop.png"))); // NOI18N
         jLabel1.setText("jLabel1");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1100, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 1100, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1120, 940));
 
@@ -122,7 +142,7 @@ public class Arcade extends javax.swing.JFrame {
             Emulator emu = new Emulator().searchEmulator(1);
             emuController.initiateEmulatorInstance(emu, game);
         } catch (InterruptedException | IOException ex) {
-            Logger.getLogger(Arcade.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MainPage.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnIniciarJuegoActionPerformed
 
@@ -136,6 +156,8 @@ public class Arcade extends javax.swing.JFrame {
         selectedGame++;
     }//GEN-LAST:event_btnNextGame1ActionPerformed
 
+
+        
     private void btnAdminPanelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminPanelActionPerformed
         AdminPanel admPanel = new AdminPanel();
         admPanel.setVisible(true);
@@ -159,33 +181,41 @@ public class Arcade extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Arcade.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Arcade.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Arcade.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Arcade.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Arcade().setVisible(true);
+                try {
+                    new MainPage().setVisible(true);
+                } catch (FontFormatException ex) {
+                    Logger.getLogger(MainPage.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(MainPage.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
 
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel NESimg;
+    private javax.swing.JPanel PanelNES;
     private javax.swing.JButton btnAdminPanel;
     private javax.swing.JButton btnIniciarJuego;
     private javax.swing.JButton btnNextGame1;
     private javax.swing.JButton btnPreviousGame;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel lblImageLeft;
-    private javax.swing.JLabel lblImageRight;
-    private javax.swing.JLabel lblMainImage;
+    private javax.swing.JLabel lblNES;
     // End of variables declaration//GEN-END:variables
 }
