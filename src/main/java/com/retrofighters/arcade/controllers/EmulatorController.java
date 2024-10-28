@@ -15,10 +15,17 @@ import java.io.IOException;
  */
 // handles the emulator instance that is executed
 public class EmulatorController {
-
+    private static int _coreId;
+    
+    
     // returns true if the emulator instance starts correctly
     public boolean initiateEmulatorInstance(Emulator pEmulator, Game pGame) throws IOException, InterruptedException{
         return new EmulatorHandler().initializeEmulator(pEmulator, pGame);
+    }
+    
+    public boolean initiateCoreInstance(int pCoreId){
+        this._coreId = pCoreId;
+        return true;
     }
     
     public EmulatorController() {

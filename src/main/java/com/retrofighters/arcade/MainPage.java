@@ -23,65 +23,67 @@ import javax.swing.JPanel;
  */
 public class MainPage extends javax.swing.JFrame {
 
-    
-    
-    private static int selectedGame = 0;
-    private static ArrayList<Game> gameList = new ArrayList<>();
     /**
      * Creates new form Arcade
      */
-    
+
     private static int currentPanelIndex = 0;
+
     /**
-     * 
+     *
      * @throws FontFormatException
-     * @throws IOException 
+     * @throws IOException
      */
-    
-    
     //CONTROL DE BOTONES
     //
     //NO BORRAR NO BORRAR NO BORRAR NO BORRAR NO BORRAR
-    public MainPage() throws FontFormatException, IOException {
-        initComponents();    //
+    public MainPage() {
+        initComponents();
 
-        
-        //Button Code
-        JPanel PanelNES = this.PanelNES, PanelPS1 = this.PanelPS1, PanelSEGA = this.PanelSEGA, PanelATARI = this.PanelATARI;
-        JButton btnNEXTcore = this.btnNEXTcore, btnPREVcore = this.btnPREVcore;
-        JPanel[] panels; // Array to hold the panels
-        panels = new JPanel[]{PanelNES, PanelPS1, PanelSEGA, PanelATARI};
-        
-        btnNEXTcore.addActionListener(new ActionListener() {
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if (currentPanelIndex < panels.length - 1) {
-            panels[currentPanelIndex].setVisible(false); // Hide current panel
-            currentPanelIndex++;
-            panels[currentPanelIndex].setVisible(true); // Show next panel
+        JPanel[] panels = {this.PanelATARI, this.PanelSEGA, this.PanelNES, this.PanelPS1};
+        currentPanelIndex = 0; // Start at the first panel
+
+        // Initial setup: show only the first panel
+        for (int i = 0; i < panels.length; i++) {
+            panels[i].setVisible(i == 0);
         }
-    }
-});
+        this.btnPREVcore.setEnabled(false);
 
-    btnPREVcore.addActionListener(new ActionListener() {
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if (currentPanelIndex > 0) {
-            panels[currentPanelIndex].setVisible(false); // Hide current panel
-            currentPanelIndex--;
-            panels[currentPanelIndex].setVisible(true); // Show previous panel
-        }
-    }
-});
-        
-        Game game = new Game();
-        Emulator emu = new Emulator();
-        
-        emu.initializeData();
-        game.initializeData();
-        gameList = game.gameList();
+        // (actually goes forward)
+        this.btnNEXTcore.addActionListener((ActionEvent e) -> {
+            if (currentPanelIndex < panels.length - 1) {
+                panels[currentPanelIndex].setVisible(false); // Hide current panel
+                currentPanelIndex++;
+                panels[currentPanelIndex].setVisible(true); // Show next panel
+                this.lblTesting.setText("Current Panel Index: " + currentPanelIndex);
 
-        
+                // Enable Previous since we not at the start anymore
+                this.btnPREVcore.setEnabled(true);
+            }
+
+            // Disable "Next if we at the last panel
+            if (currentPanelIndex == panels.length - 1) {
+                this.btnNEXTcore.setEnabled(false);
+            }
+        });
+
+        // (actually goes backward)
+        this.btnPREVcore.addActionListener((ActionEvent e) -> {
+            if (currentPanelIndex > 0) {
+                panels[currentPanelIndex].setVisible(false); // Hide current panel
+                currentPanelIndex--;
+                panels[currentPanelIndex].setVisible(true); // Show previous panel
+                this.lblTesting.setText("Current Panel Index: " + currentPanelIndex);
+
+                // Enable Next button since we not at the end
+                this.btnNEXTcore.setEnabled(true);
+            }
+
+            // Disable Previous if we at the first panel
+            if (currentPanelIndex == 0) {
+                this.btnPREVcore.setEnabled(false);
+            }
+        });
     }
 
     /**
@@ -93,12 +95,6 @@ public class MainPage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        PanelPS1 = new javax.swing.JPanel();
-        lblPS1 = new javax.swing.JLabel();
-        lblPS1info = new javax.swing.JLabel();
-        lblPS1game1 = new javax.swing.JLabel();
-        lblFGPS1 = new javax.swing.JLabel();
-        jblPS1icon = new javax.swing.JLabel();
         PanelATARI = new javax.swing.JPanel();
         lblATARI = new javax.swing.JLabel();
         lblATARIinfo = new javax.swing.JLabel();
@@ -106,13 +102,6 @@ public class MainPage extends javax.swing.JFrame {
         lblATARIgame2 = new javax.swing.JLabel();
         lblFGATARI = new javax.swing.JLabel();
         jblATARIicon = new javax.swing.JLabel();
-        PanelNES = new javax.swing.JPanel();
-        lblNES = new javax.swing.JLabel();
-        lblNESinfo = new javax.swing.JLabel();
-        lblNESgame1 = new javax.swing.JLabel();
-        lblNESgame2 = new javax.swing.JLabel();
-        lblFGNES = new javax.swing.JLabel();
-        jblNESicon = new javax.swing.JLabel();
         PanelSEGA = new javax.swing.JPanel();
         lblSEGAtitle = new javax.swing.JLabel();
         lblsSEGAinfo = new javax.swing.JLabel();
@@ -120,67 +109,29 @@ public class MainPage extends javax.swing.JFrame {
         lblSEGAgame2 = new javax.swing.JLabel();
         lblFGSEGA = new javax.swing.JLabel();
         jblSEGAicon = new javax.swing.JLabel();
+        PanelNES = new javax.swing.JPanel();
+        lblNES = new javax.swing.JLabel();
+        lblNESinfo = new javax.swing.JLabel();
+        lblNESgame1 = new javax.swing.JLabel();
+        lblNESgame2 = new javax.swing.JLabel();
+        lblFGNES = new javax.swing.JLabel();
+        jblNESicon = new javax.swing.JLabel();
+        PanelPS1 = new javax.swing.JPanel();
+        lblPS1 = new javax.swing.JLabel();
+        lblPS1info = new javax.swing.JLabel();
+        lblPS1game1 = new javax.swing.JLabel();
+        lblFGPS1 = new javax.swing.JLabel();
+        jblPS1icon = new javax.swing.JLabel();
         panelBACKGROUND = new javax.swing.JPanel();
-        btnNEXTcore = new javax.swing.JButton();
+        lblTesting = new javax.swing.JLabel();
         btnPREVcore = new javax.swing.JButton();
+        btnNEXTcore = new javax.swing.JButton();
         btnIniciarJuego = new javax.swing.JButton();
         btnAdminPanel = new javax.swing.JButton();
         lblBackIMG = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        PanelPS1.setBackground(new java.awt.Color(51, 51, 51));
-
-        lblPS1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/retrofighters/arcade/assets/titles/PS1 Title.png"))); // NOI18N
-
-        lblPS1info.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/retrofighters/arcade/assets/sysinfo/PS1 Info.png"))); // NOI18N
-
-        lblPS1game1.setText("//Game 1");
-
-        lblFGPS1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/retrofighters/arcade/assets/titles/Famous Games title.png"))); // NOI18N
-
-        jblPS1icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/retrofighters/arcade/assets/logos/PlayStation.png"))); // NOI18N
-
-        javax.swing.GroupLayout PanelPS1Layout = new javax.swing.GroupLayout(PanelPS1);
-        PanelPS1.setLayout(PanelPS1Layout);
-        PanelPS1Layout.setHorizontalGroup(
-            PanelPS1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelPS1Layout.createSequentialGroup()
-                .addGroup(PanelPS1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PanelPS1Layout.createSequentialGroup()
-                        .addGap(69, 69, 69)
-                        .addComponent(lblPS1game1))
-                    .addGroup(PanelPS1Layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addGroup(PanelPS1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jblPS1icon)
-                            .addComponent(lblFGPS1, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(18, 18, 18)
-                .addGroup(PanelPS1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblPS1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblPS1info, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(40, Short.MAX_VALUE))
-        );
-        PanelPS1Layout.setVerticalGroup(
-            PanelPS1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelPS1Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addGroup(PanelPS1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(PanelPS1Layout.createSequentialGroup()
-                        .addComponent(lblPS1)
-                        .addGap(18, 18, 18)
-                        .addComponent(lblPS1info))
-                    .addGroup(PanelPS1Layout.createSequentialGroup()
-                        .addComponent(jblPS1icon)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblFGPS1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(37, 37, 37)
-                        .addComponent(lblPS1game1)))
-                .addContainerGap(58, Short.MAX_VALUE))
-        );
-
-        getContentPane().add(PanelPS1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 210, 680, 370));
 
         PanelATARI.setBackground(new java.awt.Color(51, 51, 51));
         PanelATARI.setFocusable(false);
@@ -241,67 +192,6 @@ public class MainPage extends javax.swing.JFrame {
         );
 
         getContentPane().add(PanelATARI, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 210, 680, 370));
-
-        PanelNES.setBackground(new java.awt.Color(51, 51, 51));
-        PanelNES.setEnabled(false);
-        PanelNES.setFocusable(false);
-
-        lblNES.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/retrofighters/arcade/assets/titles/NES Title.png"))); // NOI18N
-
-        lblNESinfo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/retrofighters/arcade/assets/sysinfo/NES Info.png"))); // NOI18N
-
-        lblNESgame1.setText("//Game 1");
-
-        lblNESgame2.setText("//Game 2");
-
-        lblFGNES.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/retrofighters/arcade/assets/titles/Famous Games title.png"))); // NOI18N
-
-        jblNESicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/retrofighters/arcade/assets/logos/Nintendo Logo.png"))); // NOI18N
-
-        javax.swing.GroupLayout PanelNESLayout = new javax.swing.GroupLayout(PanelNES);
-        PanelNES.setLayout(PanelNESLayout);
-        PanelNESLayout.setHorizontalGroup(
-            PanelNESLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelNESLayout.createSequentialGroup()
-                .addGroup(PanelNESLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(PanelNESLayout.createSequentialGroup()
-                        .addGap(69, 69, 69)
-                        .addComponent(lblNESgame1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblNESgame2)
-                        .addGap(96, 96, 96))
-                    .addGroup(PanelNESLayout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addGroup(PanelNESLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jblNESicon)
-                            .addComponent(lblFGNES, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)))
-                .addGroup(PanelNESLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblNES)
-                    .addComponent(lblNESinfo))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        PanelNESLayout.setVerticalGroup(
-            PanelNESLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelNESLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addGroup(PanelNESLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(PanelNESLayout.createSequentialGroup()
-                        .addComponent(lblNES)
-                        .addGap(18, 18, 18)
-                        .addComponent(lblNESinfo))
-                    .addGroup(PanelNESLayout.createSequentialGroup()
-                        .addComponent(jblNESicon)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblFGNES, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(37, 37, 37)
-                        .addGroup(PanelNESLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblNESgame2)
-                            .addComponent(lblNESgame1))))
-                .addContainerGap(58, Short.MAX_VALUE))
-        );
-
-        getContentPane().add(PanelNES, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 210, 680, 370));
 
         PanelSEGA.setBackground(new java.awt.Color(51, 51, 51));
         PanelSEGA.setEnabled(false);
@@ -364,25 +254,142 @@ public class MainPage extends javax.swing.JFrame {
 
         getContentPane().add(PanelSEGA, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 210, 680, 370));
 
+        PanelNES.setBackground(new java.awt.Color(51, 51, 51));
+        PanelNES.setEnabled(false);
+        PanelNES.setFocusable(false);
+
+        lblNES.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/retrofighters/arcade/assets/titles/NES Title.png"))); // NOI18N
+
+        lblNESinfo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/retrofighters/arcade/assets/sysinfo/NES Info.png"))); // NOI18N
+
+        lblNESgame1.setText("//Game 1");
+
+        lblNESgame2.setText("//Game 2");
+
+        lblFGNES.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/retrofighters/arcade/assets/titles/Famous Games title.png"))); // NOI18N
+
+        jblNESicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/retrofighters/arcade/assets/logos/Nintendo Logo.png"))); // NOI18N
+
+        javax.swing.GroupLayout PanelNESLayout = new javax.swing.GroupLayout(PanelNES);
+        PanelNES.setLayout(PanelNESLayout);
+        PanelNESLayout.setHorizontalGroup(
+            PanelNESLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelNESLayout.createSequentialGroup()
+                .addGroup(PanelNESLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(PanelNESLayout.createSequentialGroup()
+                        .addGap(69, 69, 69)
+                        .addComponent(lblNESgame1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblNESgame2)
+                        .addGap(96, 96, 96))
+                    .addGroup(PanelNESLayout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addGroup(PanelNESLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jblNESicon)
+                            .addComponent(lblFGNES, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)))
+                .addGroup(PanelNESLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblNES)
+                    .addComponent(lblNESinfo))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        PanelNESLayout.setVerticalGroup(
+            PanelNESLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelNESLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(PanelNESLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(PanelNESLayout.createSequentialGroup()
+                        .addComponent(lblNES)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblNESinfo))
+                    .addGroup(PanelNESLayout.createSequentialGroup()
+                        .addComponent(jblNESicon)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblFGNES, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(37, 37, 37)
+                        .addGroup(PanelNESLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblNESgame2)
+                            .addComponent(lblNESgame1))))
+                .addContainerGap(58, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(PanelNES, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 210, 680, 370));
+
+        PanelPS1.setBackground(new java.awt.Color(51, 51, 51));
+
+        lblPS1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/retrofighters/arcade/assets/titles/PS1 Title.png"))); // NOI18N
+
+        lblPS1info.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/retrofighters/arcade/assets/sysinfo/PS1 Info.png"))); // NOI18N
+
+        lblPS1game1.setText("//Game 1");
+
+        lblFGPS1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/retrofighters/arcade/assets/titles/Famous Games title.png"))); // NOI18N
+
+        jblPS1icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/retrofighters/arcade/assets/logos/PlayStation.png"))); // NOI18N
+
+        javax.swing.GroupLayout PanelPS1Layout = new javax.swing.GroupLayout(PanelPS1);
+        PanelPS1.setLayout(PanelPS1Layout);
+        PanelPS1Layout.setHorizontalGroup(
+            PanelPS1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelPS1Layout.createSequentialGroup()
+                .addGroup(PanelPS1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelPS1Layout.createSequentialGroup()
+                        .addGap(69, 69, 69)
+                        .addComponent(lblPS1game1))
+                    .addGroup(PanelPS1Layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addGroup(PanelPS1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jblPS1icon)
+                            .addComponent(lblFGPS1, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(18, 18, 18)
+                .addGroup(PanelPS1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblPS1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblPS1info, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
+        );
+        PanelPS1Layout.setVerticalGroup(
+            PanelPS1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelPS1Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(PanelPS1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(PanelPS1Layout.createSequentialGroup()
+                        .addComponent(lblPS1)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblPS1info))
+                    .addGroup(PanelPS1Layout.createSequentialGroup()
+                        .addComponent(jblPS1icon)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblFGPS1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(37, 37, 37)
+                        .addComponent(lblPS1game1)))
+                .addContainerGap(58, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(PanelPS1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 210, 680, 370));
+
         panelBACKGROUND.setBackground(new java.awt.Color(153, 153, 255));
         panelBACKGROUND.setEnabled(false);
         panelBACKGROUND.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnNEXTcore.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/retrofighters/arcade/assets/GUI assets/boton izquierda.jpg"))); // NOI18N
-        btnNEXTcore.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNEXTcoreActionPerformed(evt);
-            }
-        });
-        panelBACKGROUND.add(btnNEXTcore, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 620, 120, 40));
+        lblTesting.setForeground(new java.awt.Color(255, 255, 255));
+        lblTesting.setText("jLabel1");
+        panelBACKGROUND.add(lblTesting, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 760, -1, -1));
 
-        btnPREVcore.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/retrofighters/arcade/assets/GUI assets/boton derecha.jpg"))); // NOI18N
+        btnPREVcore.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/retrofighters/arcade/assets/GUI assets/boton izquierda.jpg"))); // NOI18N
         btnPREVcore.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPREVcoreActionPerformed(evt);
             }
         });
-        panelBACKGROUND.add(btnPREVcore, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 620, 120, 40));
+        panelBACKGROUND.add(btnPREVcore, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 620, 120, 40));
+
+        btnNEXTcore.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/retrofighters/arcade/assets/GUI assets/boton derecha.jpg"))); // NOI18N
+        btnNEXTcore.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNEXTcoreActionPerformed(evt);
+            }
+        });
+        panelBACKGROUND.add(btnNEXTcore, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 620, 120, 40));
 
         btnIniciarJuego.setBackground(new java.awt.Color(0, 0, 0));
         btnIniciarJuego.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
@@ -415,32 +422,42 @@ public class MainPage extends javax.swing.JFrame {
 
     private void btnIniciarJuegoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarJuegoActionPerformed
         EmulatorController emuController = new EmulatorController();
-        try {
-            Game game = new Game().searchGame(1);
-            Emulator emu = new Emulator().searchEmulator(1);
-            emuController.initiateEmulatorInstance(emu, game);
-        } catch (InterruptedException | IOException ex) {
-            Logger.getLogger(MainPage.class.getName()).log(Level.SEVERE, null, ex);
+        if (emuController.initiateCoreInstance(this.currentPanelIndex)) {
+            switch (this.currentPanelIndex) {
+                case 0:
+                    // do smth
+                    break;
+                case 1:
+                    // do smth
+                    break;
+                case 2:
+                    // do smth
+                    break;
+                case 3:
+                    // do smth
+                    break;
+                default:
+                    // throw error lol
+                    break;
+            }
         }
     }//GEN-LAST:event_btnIniciarJuegoActionPerformed
 
 
-        
     private void btnAdminPanelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminPanelActionPerformed
         AdminPanel admPanel = new AdminPanel();
         admPanel.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnAdminPanelActionPerformed
 
-    private void btnPREVcoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPREVcoreActionPerformed
-        
-    }//GEN-LAST:event_btnPREVcoreActionPerformed
-
     private void btnNEXTcoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNEXTcoreActionPerformed
-        
+
     }//GEN-LAST:event_btnNEXTcoreActionPerformed
 
-    
+    private void btnPREVcoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPREVcoreActionPerformed
+
+    }//GEN-LAST:event_btnPREVcoreActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -472,16 +489,10 @@ public class MainPage extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                try {
-                    new MainPage().setVisible(true);
-                } catch (FontFormatException ex) {
-                    Logger.getLogger(MainPage.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (IOException ex) {
-                    Logger.getLogger(MainPage.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                new MainPage().setVisible(true);
             }
         });
-        
+
     }
 
 
@@ -517,6 +528,7 @@ public class MainPage extends javax.swing.JFrame {
     private javax.swing.JLabel lblSEGAgame1;
     private javax.swing.JLabel lblSEGAgame2;
     private javax.swing.JLabel lblSEGAtitle;
+    private javax.swing.JLabel lblTesting;
     private javax.swing.JLabel lblsSEGAinfo;
     private javax.swing.JPanel panelBACKGROUND;
     // End of variables declaration//GEN-END:variables

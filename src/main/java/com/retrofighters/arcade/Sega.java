@@ -26,7 +26,7 @@ public class Sega extends javax.swing.JFrame {
         Game game = new Game();
         Emulator emu = new Emulator();
         
-        emu.initializeData();
+        emu.initializeData("SEGA");
         game.initializeData();
         gameList = game.gameList();
     }

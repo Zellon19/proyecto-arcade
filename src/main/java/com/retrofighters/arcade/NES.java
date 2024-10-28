@@ -26,7 +26,7 @@ public class NES extends javax.swing.JFrame {
         Game game = new Game();
         Emulator emu = new Emulator();
         
-        emu.initializeData();
+        emu.initializeData("NES");
         game.initializeData();
         gameList = game.gameList();
     }
