@@ -11,20 +11,68 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.awt.Font;
 import java.awt.FontFormatException;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+
 /**
  *
  * @author Retro Fighters
  */
 public class MainPage extends javax.swing.JFrame {
 
+    
+    
     private static int selectedGame = 0;
     private static ArrayList<Game> gameList = new ArrayList<>();
     /**
      * Creates new form Arcade
      */
+    
+    private static int currentPanelIndex = 0;
+    /**
+     * 
+     * @throws FontFormatException
+     * @throws IOException 
+     */
+    
+    
+    //CONTROL DE BOTONES
+    //
+    //NO BORRAR NO BORRAR NO BORRAR NO BORRAR NO BORRAR
     public MainPage() throws FontFormatException, IOException {
-        initComponents();
+        initComponents();    //
+
+        
+        //Button Code
+        JPanel PanelNES = this.PanelNES, PanelPS1 = this.PanelPS1, PanelSEGA = this.PanelSEGA, PanelATARI = this.PanelATARI;
+        JButton btnNEXTcore = this.btnNEXTcore, btnPREVcore = this.btnPREVcore;
+        JPanel[] panels; // Array to hold the panels
+        panels = new JPanel[]{PanelNES, PanelPS1, PanelSEGA, PanelATARI};
+        
+        btnNEXTcore.addActionListener(new ActionListener() {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (currentPanelIndex < panels.length - 1) {
+            panels[currentPanelIndex].setVisible(false); // Hide current panel
+            currentPanelIndex++;
+            panels[currentPanelIndex].setVisible(true); // Show next panel
+        }
+    }
+});
+
+    btnPREVcore.addActionListener(new ActionListener() {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (currentPanelIndex > 0) {
+            panels[currentPanelIndex].setVisible(false); // Hide current panel
+            currentPanelIndex--;
+            panels[currentPanelIndex].setVisible(true); // Show previous panel
+        }
+    }
+});
         
         Game game = new Game();
         Emulator emu = new Emulator();
@@ -320,20 +368,33 @@ public class MainPage extends javax.swing.JFrame {
         panelBACKGROUND.setEnabled(false);
         panelBACKGROUND.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnNEXTcore.setText("jButton1");
-        panelBACKGROUND.add(btnNEXTcore, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 640, -1, -1));
+        btnNEXTcore.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/retrofighters/arcade/assets/GUI assets/boton izquierda.jpg"))); // NOI18N
+        btnNEXTcore.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNEXTcoreActionPerformed(evt);
+            }
+        });
+        panelBACKGROUND.add(btnNEXTcore, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 620, 120, 40));
 
-        btnPREVcore.setText("jButton2");
-        panelBACKGROUND.add(btnPREVcore, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 640, -1, -1));
+        btnPREVcore.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/retrofighters/arcade/assets/GUI assets/boton derecha.jpg"))); // NOI18N
+        btnPREVcore.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPREVcoreActionPerformed(evt);
+            }
+        });
+        panelBACKGROUND.add(btnPREVcore, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 620, 120, 40));
 
+        btnIniciarJuego.setBackground(new java.awt.Color(0, 0, 0));
         btnIniciarJuego.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        btnIniciarJuego.setText("Iniciar Sistema");
+        btnIniciarJuego.setForeground(new java.awt.Color(0, 0, 0));
+        btnIniciarJuego.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/retrofighters/arcade/assets/GUI assets/start button.png"))); // NOI18N
+        btnIniciarJuego.setBorderPainted(false);
         btnIniciarJuego.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnIniciarJuegoActionPerformed(evt);
             }
         });
-        panelBACKGROUND.add(btnIniciarJuego, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 600, 175, 71));
+        panelBACKGROUND.add(btnIniciarJuego, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 610, 220, 70));
 
         btnAdminPanel.setText("Acceso Admin");
         btnAdminPanel.addActionListener(new java.awt.event.ActionListener() {
@@ -371,6 +432,15 @@ public class MainPage extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnAdminPanelActionPerformed
 
+    private void btnPREVcoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPREVcoreActionPerformed
+        
+    }//GEN-LAST:event_btnPREVcoreActionPerformed
+
+    private void btnNEXTcoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNEXTcoreActionPerformed
+        
+    }//GEN-LAST:event_btnNEXTcoreActionPerformed
+
+    
     /**
      * @param args the command line arguments
      */
