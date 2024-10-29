@@ -26,7 +26,7 @@ public class PlayStation extends javax.swing.JFrame {
         Game game = new Game();
         Emulator emu = new Emulator();
         
-        emu.initializeData();
+        emu.initializeData("PS1");
         game.initializeData();
         gameList = game.gameList();
     }

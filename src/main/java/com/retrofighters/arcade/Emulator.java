@@ -37,18 +37,23 @@ public class Emulator {
         this._path = _path;
     }
     
-    public void initializeData(){
-        String atariEmuPath = "C:\\RetroArch-Win64\\cores\\stella_libretro.dll";
-        String nesEmuPath = "C:\\RetroArch-Win64\\cores\\fceumm_libretro.dll";
-
-        String atariEmuName = "Atari - 2600 (Stella)";
-        String nesEmuName = "Nintendo - NES / Famicom *(FCEUmm)";
-                
-        Emulator atariEmulator = new Emulator(1, atariEmuName, atariEmuPath);
-        Emulator nesEmulator = new Emulator(2, nesEmuName, nesEmuPath);
-        
-        this.addEmulator(atariEmulator);
-        this.addEmulator(nesEmulator);
+    public String[] initializeData(String pName){
+        switch(pName){
+            case "Atari":
+                String[] atariEmu = {"C:\\RetroArch-Win64\\cores\\stella_libretro.dll", "Atari - 2600 (Stella)"};
+                return atariEmu;
+            case "NES":
+                String[] nesEmu = {"C:\\RetroArch-Win64\\cores\\fceumm_libretro.dll", "Nintendo - NES / Famicom *(FCEUmm)"};
+                return nesEmu;
+            case "PS1":
+                String[] ps1Emu = {"Path", "Name"};
+                return ps1Emu;
+            case "SEGA":
+                String[] segaEmu = {"Path", "Name"};
+                return segaEmu;
+            default:
+                return null;
+        }
     }
     
     // look up an emulator having the object

@@ -26,7 +26,7 @@ public class Atari extends javax.swing.JFrame {
         Game game = new Game();
         Emulator emu = new Emulator();
         
-        emu.initializeData();
+        emu.initializeData("Atari");
         game.initializeData();
         gameList = game.gameList();
     }
@@ -44,8 +44,6 @@ public class Atari extends javax.swing.JFrame {
         btnIniciarJuego = new javax.swing.JButton();
         btnAdminPanel = new javax.swing.JButton();
         lblMainImage = new javax.swing.JLabel();
-        lblImageRight = new javax.swing.JLabel();
-        lblImageLeft = new javax.swing.JLabel();
         btnPreviousGame = new javax.swing.JButton();
         btnNextGame1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -64,7 +62,7 @@ public class Atari extends javax.swing.JFrame {
                 btnIniciarJuegoActionPerformed(evt);
             }
         });
-        jPanel1.add(btnIniciarJuego, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 600, 175, 71));
+        jPanel1.add(btnIniciarJuego, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 640, 175, 71));
 
         btnAdminPanel.setText("Acceso Admin");
         btnAdminPanel.addActionListener(new java.awt.event.ActionListener() {
@@ -75,16 +73,7 @@ public class Atari extends javax.swing.JFrame {
         jPanel1.add(btnAdminPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 90, -1, -1));
 
         lblMainImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/retrofighters/arcade/assets/gameLogos/atari/atariSpaceInvadersLogo.jpg"))); // NOI18N
-        jPanel1.add(lblMainImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 260, -1, -1));
-
-        lblImageRight.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/retrofighters/arcade/assets/gameLogos/nintendoNes/nesTetrisLogo.jpg"))); // NOI18N
-        lblImageRight.setMinimumSize(new java.awt.Dimension(145, 201));
-        jPanel1.add(lblImageRight, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 260, -1, -1));
-
-        lblImageLeft.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/retrofighters/arcade/assets/gameLogos/nintendoNes/nesTetrisLogo.jpg"))); // NOI18N
-        jPanel1.add(lblImageLeft, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 260, -1, -1));
-        lblImageLeft.getAccessibleContext().setAccessibleName("lblImageLeft");
-        lblImageLeft.getAccessibleContext().setAccessibleDescription("");
+        jPanel1.add(lblMainImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 270, 220, 310));
 
         btnPreviousGame.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         btnPreviousGame.setText("<-");
@@ -94,7 +83,7 @@ public class Atari extends javax.swing.JFrame {
                 btnPreviousGameActionPerformed(evt);
             }
         });
-        jPanel1.add(btnPreviousGame, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 620, -1, -1));
+        jPanel1.add(btnPreviousGame, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 650, -1, -1));
 
         btnNextGame1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         btnNextGame1.setText("->");
@@ -104,7 +93,7 @@ public class Atari extends javax.swing.JFrame {
                 btnNextGame1ActionPerformed(evt);
             }
         });
-        jPanel1.add(btnNextGame1, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 620, -1, -1));
+        jPanel1.add(btnNextGame1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 650, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/retrofighters/arcade/assets/RetroFighters/RetroFighters Desktop.png"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -191,8 +180,6 @@ public class Atari extends javax.swing.JFrame {
     private javax.swing.JButton btnPreviousGame;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel lblImageLeft;
-    private javax.swing.JLabel lblImageRight;
     private javax.swing.JLabel lblMainImage;
     // End of variables declaration//GEN-END:variables
 }
